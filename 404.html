@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404</title>
+    <link href="./styles.css" rel="stylesheet" />
+    <style>
+      @import url("https://fonts.cdnfonts.com/css/cascadia-mono");
+
+      body {
+        user-select: none;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        background-color: #000;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+          ),
+          url("./img/bg.jpg");
+        background-size: cover;
+        background-position: center;
+        backdrop-filter: blur(3px);
+      }
+
+      .title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 700;
+        font-size: 4em;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.12);
+      }
+
+      .title .code {
+        color: transparent;
+        font-size: 5em;
+        font-weight: 900;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #c5c5c525;
+      }
+
+      div.vector {
+        height: 250px;
+        width: 600px;
+        overflow: hidden;
+        position: absolute;
+        opacity: 0.3;
+        top: 0;
+        left: 0;
+      }
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+      line,
+      path {
+        stroke: rgba(255, 255, 255);
+        stroke-width: 2px;
+        fill: none;
+      }
+      #top {
+        stroke-width: 2px;
+      }
+      .terminal {
+        overscroll-behavior-y: none;
+        background-color: #00000070;
+        color: #ffffff40;
+        opacity: 80%;
+        font-size: 15px;
+        white-space: pre-wrap;
+        line-height: 1.5em;
+        width: 80%;
+        max-width: 800px;
+        font-family: "Cascadia Mono", sans-serif;
+        padding: 20px;
+        border-radius: 7px;
+        overflow: auto;
+        overflow-wrap: break-word;
+        resize: none;
+        max-height: 200px;
+        max-width: 600px;
+        width: 600px;
+        height: 200px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .terminal::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script>
+      function redirectToPage() {
+        window.location.href = "../";
+      }
+
+      document.addEventListener("click", redirectToPage);
+    </script>
+  </head>
+  <body>
+    <div class="vector">
+      <svg viewBox="0 0 600 250" preserveAspectRatio="none">
+        <line x1="1" y1="1" x2="600" y2="1" id="top" />
+        <line x1="1" y1="1" x2="1" y2="250" />
+        <line x1="1" y1="1" x2="450" y2="250" />
+        <line x1="1" y1="1" x2="175" y2="250" />
+        <path
+          d="M 1,80 a 12,15 45 1,1 37,-26 a 10,12 0 1,1 14,-24 a 25,20 -45 1,1 40,-30"
+        />
+        <path
+          d="M 1,160 a 17,20 45 1,1 75,-52 a 17,20 0 1,1 30,-48 a 30,25 -45 1,1 60,-70"
+        />
+        <path
+          d="M 1,240 a 22,25 45 1,1 113,-78 a 23,26 0 1,1 46,-72 a 35,30 -45 1,1 90,-110"
+        />
+      </svg>
+    </div>
+    <div class="title">
+      <div class="terminal" id="terminal"></div>
+    </div>
+    <script>
+      const terminal = document.getElementById("terminal");
+      const content = [
+        "In the midst of the digital wilderness, I find myself standing at the crossroads of frustration and curiosity.",
+        "Here, within the barren expanse of the 404 page, I am confronted with the stark reality of being lost in the labyrinth of cyberspace.",
+        "Error 404: Page Not Found.",
+        "The words glare back at me, a silent admonition for straying from the well-trodden paths of the internet.",
+        "How did I end up here, adrift in this desolate landscape of broken links and dead ends?",
+        "I can't help but wonder if this is a metaphor for something larger — a reflection of the fleeting nature of digital existence, perhaps.",
+        "In a world where information flows freely and boundaries are blurred, it's all too easy to lose one's way amidst the endless sea of data.",
+        "Yet, even in this digital wasteland, there is a strange allure—a sense of possibility lurking just beyond the horizon.",
+        "Maybe, just maybe, there's a hidden gem waiting to be unearthed amidst the rubble of broken hyperlinks and misplaced URLs.",
+        "With hesitant fingers, I navigate the virtual maze before me, clicking through the shadows in search of a glimmer of hope—a sign that I'm not truly lost, but merely on a detour towards something unexpected.",
+        "As each letter materializes slowly on the screen, I can't help but feel a sense of anticipation building within me.",
+        "Despite the uncertainty that surrounds me, I am driven by the belief that there is meaning to be found in this digital wilderness—that even in the face of error, there is still the potential for discovery.",
+        "So I press onward, guided by the flickering light of curiosity, eager to uncover the secrets that lie hidden within the depths of the 404 page.",
+        "For in this virtual wasteland, amidst the echoes of lost data and forgotten links, there is still the promise of adventure waiting to be embraced.",
+      ];
+
+      let sentenceIndex = 0;
+      let index = 0;
+
+      function typeEffect() {
+        if (sentenceIndex < content.length) {
+          if (index < content[sentenceIndex].length) {
+            terminal.textContent += content[sentenceIndex][index++];
+            terminal.scrollTop = terminal.scrollHeight;
+            if (content[sentenceIndex][index - 1] === "\n") {
+              setTimeout(typeEffect, 100);
+            } else {
+              setTimeout(typeEffect, 25);
+            }
+          } else {
+            sentenceIndex++;
+            terminal.textContent += "\n";
+            index = 0;
+            setTimeout(typeEffect, 500);
+          }
+        }
+      }
+
+      typeEffect();
+    </script>
+  </body>
+</html>

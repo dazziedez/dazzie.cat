@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Hi!!" />
+    <meta
+      property="og:description"
+      content="I got rid of the old cringy description :P Good morning.."
+    />
+    <meta property="og:image" content="./img/kitty.jpg" />
+    <link href="./styles.css" rel="stylesheet" />
+    <title>i am freezer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="./img/proxy-image.png" />
+    <script>
+      fetch("https://api.lanyard.rest/v1/users/912091795318517821")
+        .then((response) => response.json())
+        .then((data) => {
+          const profilePictureUrl = `https://cdn.discordapp.com/avatars/${
+            data.data.discord_user.id
+          }/${data.data.discord_user.avatar}${
+            data.data.discord_user.avatar.startsWith("a_") ? ".gif" : ".png"
+          }?size=512`;
+
+          const profilePictureDiv = document.querySelector(".profile-picture");
+          profilePictureDiv.style.backgroundImage = `url(${profilePictureUrl})`;
+          profilePictureDiv.style.borderRadius = "50%";
+        });
+    </script>
+  </head>
+  <body>
+    <style>
+      body {
+        background-image: url("./img/bg.jpg"); /* Placeholder for when i want this to be an image again */
+        background-size: cover;
+        background-position: center;
+      }
+      .container .me-irl {
+        display: flex;
+        align-items: center;
+      }
+      .profile-picture {
+        width: 128px;
+        height: 128px;
+        background-size: cover;
+        background-position: center;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+      }
+      .main {
+        user-select: none;
+        margin-top: 30px;
+        font-size: 50px;
+        text-align: left;
+      }
+      .about {
+        font-size: 20px;
+        margin-right: 20px;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .container .hello {
+        text-align: center;
+      }
+
+      .card {
+        user-select: none;
+        cursor: pointer;
+        color: var(--accent);
+        display: inline-block;
+        width: 200px;
+        height: 100px;
+        border-radius: 10px;
+        margin: 20px;
+        margin-left: 20px;
+        padding: 20px;
+        background-color: var(--dark-two);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: color 0.3s ease, background-color 0.3s ease,
+          transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card-content h2 {
+        text-align: center;
+        margin-top: 0px;
+        transition: margin-top 0.3s;
+      }
+
+      .card-content p {
+        margin-top: -10px;
+        text-align: center;
+        opacity: 0.8;
+      }
+
+      .card:hover {
+        color: var(--dark-one);
+        background-color: var(--accent);
+        transform: scale(1.05) rotate(2.5deg);
+      }
+
+      .container .stuff {
+        text-align: left;
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 18px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .buttons .funny-arrow {
+        position: relative;
+        left: 7px;
+      }
+
+      .buttons .real {
+        background-color: var(--dark-two);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        border-radius: 20px;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 30px;
+      }
+
+      .button {
+        color: var(--accent);
+        padding: 0px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        margin: 5px 0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+
+      .button:hover {
+        transform: scale(1.1);
+      }
+      .tooltip {
+        visibility: hidden;
+        min-width: 80px;
+        background-color: var(--dark-two);
+        color: var(--accent);
+        text-align: center;
+        border-radius: 10px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50px) scale(70%, 70%);
+        opacity: 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-picture {
+        cursor: move;
+        cursor: url(images/grab.cur);
+        cursor: grab;
+      }
+
+      .profile-picture:active {
+        cursor: url(images/grabbing.cur);
+        cursor: grabbing;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+      .expanded-card {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.96);
+        width: 75%;
+        height: 75%;
+        color: var(--accent);
+        background-color: var(--dark-one);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 60%;
+        max-height: 80%;
+        overflow: auto;
+        z-index: 9999;
+        padding: 30px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        scrollbar-width: thin;
+      }
+
+      .expanded-card.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .esc-circle {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        border: 2px solid var(--accent);
+        opacity: 50%;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 12px;
+        transition: opacity 0.1s ease;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+        z-index: 999;
+      }
+
+      .esc-circle:hover {
+        opacity: 100%;
+      }
+
+      #expandedTitle {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+      }
+
+      .graahh {
+        line-height: 1.5;
+        font-size: 20px;
+        font-family: "Roboto", sans-serif;
+        background-color: var(--dark-two);
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: 500;
+        transition: background-color 0.15s ease, border 0.15s ease,
+          color 0.15s ease;
+      }
+
+    </style>
+    <video id="bgVideo" autoplay loop muted style="position:fixed; right:0; bottom:0; min-width:100%; min-height:100%; z-index:-100">
+      <source src="./img/bg.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+      <div class="me-irl">
+        <div class="profile-picture" alt="pet pet" title="pet pet"></div>
+        <div>
+          <div class="main">
+            I'm
+            <a
+              href="https://discord.com/users/912091795318517821"
+              data-text="dazzie"
+              target="_blank"
+              >freezer</a
+            >
+            !!
+          </div>
+          <div class="about" style="text-align: left">
+            The world's best developer, full stop. <--- (that is indeed a full
+            stop)<br />
+            You can also call me freezer, deezer | load | 2bot, dazzie, or
+            simply deez!! <b>(no nuts)</b>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <div class="real">
+          <a href="https://github.com/dazziedez" class="button" target="_blank">
+            <i class="fab fa-github"></i>
+            <div class="tooltip">GitHub</div>
+          </a>
+          <a
+            href="https://discord.gg/catposting"
+            class="button"
+            target="_blank"
+          >
+            <i class="fab fa-discord"></i>
+            <div class="tooltip">Server</div>
+          </a>
+          <a
+            href="https://yourworldoftext.com/~deezerload"
+            class="button"
+            target="_blank"
+          >
+            <i class="fa-solid fa-earth-europe"></i>
+            <div class="tooltip">Text world</div>
+          </a>
+        </div>
+        <img
+          class="funny-arrow"
+          src="./img/my_stuff.png"
+          width="90"
+          onclick="changeBackground('./img/maltigi.jpg')"
+        />
+      </div>
+      <div class="stuff">I don't have much to show..</div>
+      <div class="cards">
+        <div class="card" onclick="openLink('fridge')">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <h2>fridge bot</h2>
+            <p class="small-text">
+              Silly discord bot developed with my friends!!
+            </p>
+          </div>
+        </div>
+        <div class="card" onclick="openLink('avatarlogger')">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <h2>avatar logger</h2>
+            <p class="small-text">A discord.py bot that logs avatar changes</p>
+          </div>
+        </div>
+        <div class="card" onclick="openLink('placeholder2')">
+          <div class="card-image"></div>
+          <div class="card-content">
+            <h2>Nothing yet</h2>
+            <p class="small-text">i don't know.........</p>
+          </div>
+        </div>
+      </div>
+      <div class="hello center-content">© 2023
+        <a
+          href="https://github.com/dazziedez"
+          data-text="dazzie"
+          target="_blank"
+          >dazzie</a
+        >
+        👍
+      </div>
+    </div>
+
+    <div class="footer credits" onclick="openLink('credits')">
+      background by <a href="https://x.com/1nupool" target="_blank"><b>犬プール</b></a>
+    </div>
+
+    <div class="expanded-card" id="expandedCard">
+      <div class="close-button" onclick="closeExpandedCard()">
+        <div class="esc-circle">Esc</div>
+      </div>
+      <div class="expanded-content">
+        <h2 id="expandedTitle">Expanded Card Title</h2>
+        <p id="expandedContent">Expanded card content goes here...</p>
+        <p4>Press esc or also scroll up and click the close button :)</p4>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/3.0.2/marked.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --hyper-one: rgb(123, 208, 91);
+    --hyper-two: rgb(92, 157, 68);
+    --accent: rgb(227, 233, 226);
+    --dark-one: #232428;
+    --dark-two: #313338;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    background: radial-gradient(ellipse at center, var(--hyper-one), var(--hyper-two));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    animation: gradientShift 5s linear infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: -100% -100%;
+    }
+}
+
+::selection {
+    background-color: var(--accent);
+    color: var(--dark-one);
+    text-shadow: none;
+}
+
+.container {
+    color: var(--accent);
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--dark-one);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.center-content {
+    text-align: center;
+}
+
+.container .hello {
+    font-size: 15px;
+    font-weight: 300;
+    padding-top: 10px;
+}
+
+.container .main {
+    font-size: 30px;
+    font-weight: 700;
+    padding-top: 10px;
+}
+
+.container .about {
+    font-size: 15px;
+    font-weight: 200;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.footer {
+    user-select: none;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: var(--accent);
+    background-color: var(--dark-one);
+    padding: 15px;
+    border-radius: 15px;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+.footer a {
+    transition: color 0.3s ease;
+
+}
+
+.footer:hover a {
+    color: var(--dark-one);
+}
+
+.footer:hover {
+    transform: scale(1.05) translate(-5px, 0px);
+    color: var(--dark-one);
+    background-color: var(--accent);
+}
+
+p code {
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+    color: #cdd0f5;
+    background-color: #272b57;
+    border: 2px solid #272b57;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.15s ease, border 0.15s ease, color 0.15s ease;
+}
+
+p code:hover {
+    cursor: pointer;
+    background-color: #5865f2;
+    border: 2px solid #5865f2;
+    color: #fff
+}
+
+pre {
+    background-color: var(--dark-two);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444444;
+}
+
+pre code {
+    color: #fff;
+    font-family: 'Cascadia', sans-serif;
+    background-color: transparent;
+    border: none;
+    cursor: text;
+}
+
+pre code:hover {
+    color: #fff;
+    font-family: 'Cascadia', sans-serif;
+    background-color: transparent;
+    border: none;
+    cursor: text;
+}
+
+blockquote {
+    background-color: var(--dark-one);
+    border: 1px solid #444444;
+    border-left: 5px solid var(--hyper-two);
+    margin: 1.5em 0;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+}
